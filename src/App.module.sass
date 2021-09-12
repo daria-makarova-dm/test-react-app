@@ -1,0 +1,19 @@
+@import ./styles/colors
+    
+.wrapper
+  display: grid
+  grid-template-rows: auto 1fr
+  grid-template-columns: 200px 1fr
+  grid-template-areas:  "header header" "aside content"
+
+.header
+    grid-area: header
+    background-color: $cl-java
+
+.sidebar
+  grid-area: aside
+  background-color: $cl-nero
+  padding: 10px
+
+.content
+  grid-area: content
