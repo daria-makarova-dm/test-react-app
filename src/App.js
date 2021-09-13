@@ -1,20 +1,44 @@
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router';
 import styles from './App.module.sass';
+import Header from './components/Header/Header';
+import Profile from './pages/Profile/Profile';
+import { initializeApp } from './redux/app-reducer'
 
-function App() {
+function App(props) {
+
+  useEffect(() => {
+    props.initializeApp();
+  });
+
+  if (!props.isAuth) {
+    debugger
+    return (
+      <div>login</div>
+    )
+  }
+  
   return (
     <div className={styles.wrapper}>
-      <header className={styles.header}>
-        hvuvuvuv<br />
-        iiviivyiyvyii
-      </header>
+      <Header />
       <aside className={styles.sidebar}>
-        fdgdfgdfgdfgdfgdfgdfgdfg
+        Sidebar
       </aside>
       <div className={styles.content}>
-        fgdfgdfgdfgd
+        <Switch>
+          <Route path="/"><Profile /></Route>
+        </Switch>
       </div>
     </div>
   );
+
 }
 
-export default App;
+let mapStateToProps = (state) => {
+  return {
+    isAuth: state.auth.isAuth
+  }
+}
+
+export default connect(mapStateToProps, { initializeApp })(App);
