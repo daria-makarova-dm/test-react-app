@@ -31,7 +31,7 @@ function App(props) {
     <Switch>
       <Route path="/login">{
         props.isAuth ? 
-        <Redirect to="/profile" /> :
+        <Redirect to={"/profile/" + props.authUserID} /> :
         <Login />
       }</Route>
 
@@ -40,7 +40,7 @@ function App(props) {
           <Header />
             <div className={styles.content}>
               <Switch>
-                <Route path="/profile"><Profile /></Route>
+                <Route path="/profile/:userID"><Profile /></Route>
               </Switch>
             </div>
         </div>
@@ -57,7 +57,8 @@ function App(props) {
 let mapStateToProps = (state) => {
   return {
     isAuth: state.auth.isAuth,
-    isInitialized: state.app.isInitialized
+    isInitialized: state.app.isInitialized,
+    authUserID: state.auth.id
   }
 }
 
