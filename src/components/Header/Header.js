@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import HeaderTemplate from "./HeaderTemplate";
+import { logOut } from '../../redux/auth-reducer'
 
 function Header(props) {
 
@@ -17,13 +18,19 @@ function Header(props) {
 
     const onMenuClick = () => {
         toggleOpening(!isOpened)
-    } 
+    }
+
+    const onLogOut = (e) => {
+        e.preventDefault()
+        props.logOut()
+    }
 
     return <HeaderTemplate
         authUserID={props.authUserID}
         rootEl={rootEl}
         isOpened={isOpened}
-        onMenuClick={onMenuClick} />
+        onMenuClick={onMenuClick}
+        onLogOut={onLogOut} />
 }
 
 let mapStateToProps = (state) => ({
@@ -31,5 +38,5 @@ let mapStateToProps = (state) => ({
 });
 
 export default compose(
-    connect(mapStateToProps, {})
+    connect(mapStateToProps, {logOut})
 )(Header);

@@ -78,4 +78,15 @@ export const logIn = (logInData) => {
     }
 }
 
+export const logOut = () => {
+    return async (dispatch) => {
+        let data = await authAPI.logOut()
+        if (data.resultCode === 0) {
+            dispatch(setUserAuthData(null, null, null, false));
+        } else {
+            dispatch(setErrorText(data.messages));
+        }
+    }
+}
+
 export default authReducer;
