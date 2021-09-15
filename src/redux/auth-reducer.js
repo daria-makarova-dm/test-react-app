@@ -1,6 +1,8 @@
-import { authAPI } from "../api/api";
+import { authAPI, securityAPI } from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
+const SET_ERROR_TEXT = 'SET_ERROR_TEXT';
+const SET_CAPTCHA_URL = 'SET_CAPTCHA_URL';
 
 let initialState = {
     id: null,
@@ -19,6 +21,16 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 ...action.data
             };
+        case SET_ERROR_TEXT:
+            return {
+                ...state,
+                error: action.errorMessage
+            };
+        case SET_CAPTCHA_URL:
+            return {
+                ...state,
+                captchaURL: action.captchaURL
+            };
         default:
             return state;
     }
@@ -29,6 +41,16 @@ export const setUserAuthData = (id, email, login, isAuth) => ({
     data: {id, email, login, isAuth}
 })
 
+export const setErrorText = (errorMessage) => ({
+    type: SET_ERROR_TEXT,
+    errorMessage
+})
+
+export const setCaptchaURL = (captchaURL) => ({
+    type: SET_CAPTCHA_URL,
+    captchaURL
+})
+
 // thunks
 
 export const getAuth = () => async (dispatch) => {
@@ -36,6 +58,23 @@ export const getAuth = () => async (dispatch) => {
     if (data.resultCode === 0) {
         let { id, email, login } = data.data;
         dispatch(setUserAuthData(id, email, login, true));
+    }
+}
+
+export const logIn = (logInData) => {
+    let { email, password, rememberMe, captcha } = logInData;
+    return async (dispatch) => {
+        let data = await authAPI.login(email, password, rememberMe, captcha)
+        if (data.resultCode === 0) {
+            dispatch(getAuth());
+            dispatch(setCaptchaURL(null))
+        } else {
+            if (data.resultCode === 10) {
+                let captcha = await securityAPI.getCaptcha();
+                dispatch(setCaptchaURL(captcha.url))
+            }
+            dispatch(setErrorText(data.messages));
+        }
     }
 }
 

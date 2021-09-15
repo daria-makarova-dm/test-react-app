@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import styles from './App.module.sass';
 import Header from './components/Header/Header';
 import Preloader from './components/Preloader/Preloader';
+import Login from './pages/Login/Login';
 import Profile from './pages/Profile/Profile';
 import { initializeApp } from './redux/app-reducer'
 
@@ -26,16 +27,26 @@ function App(props) {
     {!props.isAuth && props.history.location.pathname !== '/login' ? 
     
     <Redirect to="/login" /> : 
-    
-    <div className={styles.wrapper}>
-      <Header />
-      <div className={styles.content}>
-        <Switch>
-          <Route path="/profile"><Profile /></Route>
-          <Route path="/login">login</Route>
-        </Switch>
-      </div>
-    </div>
+
+    <Switch>
+      <Route path="/login">{
+        props.isAuth ? 
+        <Redirect to="/profile" /> :
+        <Login />
+      }</Route>
+
+      <Route>
+        <div className={styles.wrapper}>
+          <Header />
+            <div className={styles.content}>
+              <Switch>
+                <Route path="/profile"><Profile /></Route>
+              </Switch>
+            </div>
+        </div>
+      </Route>
+      
+    </Switch>
     
     }
   </Route>

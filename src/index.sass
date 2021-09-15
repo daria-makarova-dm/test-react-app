@@ -6,6 +6,7 @@ body
   font-family: 'Ubuntu', sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
+  color: $cl-nero
 
 ul,
 li
@@ -24,3 +25,76 @@ a
 
 *
   box-sizing: border-box
+
+button,
+input
+  font-family: 'Ubuntu', sans-serif
+
+// buttons
+
+.btn
+  border: 1px solid transparent
+  cursor: pointer
+  text-align: center
+  border-radius: 4px
+  padding: 1px 5px
+
+  &:disabled
+    cursor: not-allowed
+
+  &-primary
+    color: white
+    background-color: $cl-java
+    border-color: $cl-java
+
+    &:hover
+      background-color: $cl-elm
+      border-color: $cl-elm
+
+// inputs
+
+.input
+    width: 100%
+    padding: 6px 12px
+    font-size: 14px
+    color: $cl-nightRider
+    background-color: $cl-whiteSmoke
+    background-image: none
+    border: 1px solid $cl-whiteSmokeDark
+    border-radius: 4px
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.08)
+    transition: border-color 0.3s ease
+
+    &:focus
+        outline: none
+        border-color: $cl-gainsboro
+
+input[type="checkbox"]
+  display: none
+
+label
+  &.checkbox
+    cursor: pointer
+    position: relative
+    &::before
+      content: ''
+      display: inline-block
+      width: 10px
+      height: 10px
+      border: 1px solid $cl-whiteSmokeDark
+      margin-right: 5px        
+
+input:checked + label.checkbox::before
+  background-color: $cl-java
+  border: 1px solid transparent
+
+input:checked + label.checkbox::after
+  content: ''
+  position: absolute
+  width: 3px
+  height: 4px
+  border-bottom: 2px solid white
+  border-right: 2px solid white
+  left: 3px
+  top: 45%
+  transform: translateY(-50%) rotate(45deg)

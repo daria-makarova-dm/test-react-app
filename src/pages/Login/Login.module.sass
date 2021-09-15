@@ -1,0 +1,45 @@
+@import ../../styles/colors
+$bg-img: url('../../assets/images/login_bg.jpg')
+
+.wrapper
+    position: fixed
+    background-image: $bg-img
+    width: 100%
+    height: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+
+.loginForm
+    background-color: #fff
+    border: 1px solid transparent
+    padding: 30px 15px
+    width: 300px
+
+.inputWrapper
+    position: relative
+    margin-bottom: 10px
+
+.error
+    position: absolute
+    left: 115%
+    top: 50%
+    transform: translatey(-50%)
+    color: white
+    min-width: 200px
+
+.heading
+    font-size: 28px
+    text-align: center
+
+.btn
+    display: block
+    padding: 6px 12px
+    font-size: 14px
+    margin: auto
+    margin-top: 10px
+
+
+@media (max-width: 750px)
+    .error
+        display: none
