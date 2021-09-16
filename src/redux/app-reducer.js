@@ -1,4 +1,4 @@
-import { getAuth } from "./auth-reducer";
+import { getAuth, getAuthProfileData } from "./auth-reducer";
 
 const SET_INITIALIZING_STATUS = 'SET_INITIALIZING_STATUS';
 
@@ -25,10 +25,11 @@ export const setInitializingStatus = () => ({
 
 //thunks 
 
-export const initializeApp = () => {
+export const initializeApp = (authUserID) => {
     return (dispatch) => {
         let authInit = dispatch(getAuth());
-        Promise.all([authInit])
+        let authProfile = dispatch(getAuthProfileData(authUserID))
+        Promise.all([authInit, authProfile])
             .then(() => {
                 dispatch(setInitializingStatus());
             })

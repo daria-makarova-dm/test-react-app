@@ -8,13 +8,15 @@ function Header(props) {
 
     let [isOpened, toggleOpening] = useState(false);
 
+
     const rootEl = useRef(null);
 
     useEffect(() => {
+
         const onClick = e => rootEl.current.contains(e.target) || toggleOpening(false);
         document.addEventListener('click', onClick);
         return () => document.removeEventListener('click', onClick);
-    }, []);
+    });
 
     const onMenuClick = () => {
         toggleOpening(!isOpened)
@@ -30,11 +32,14 @@ function Header(props) {
         rootEl={rootEl}
         isOpened={isOpened}
         onMenuClick={onMenuClick}
-        onLogOut={onLogOut} />
+        onLogOut={onLogOut}
+        authUserData={props.authUserProfileData} />
+
 }
 
 let mapStateToProps = (state) => ({
-    authUserID: state.auth.id
+    authUserID: state.auth.id,
+    authUserProfileData: state.auth.authUserData
 });
 
 export default compose(

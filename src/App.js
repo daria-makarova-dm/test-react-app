@@ -12,7 +12,7 @@ import { initializeApp } from './redux/app-reducer'
 function App(props) {
 
   useEffect(() => {
-    props.initializeApp();
+    props.initializeApp(props.authUserID);
   });
 
   if (!props.isInitialized) {

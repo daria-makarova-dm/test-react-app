@@ -1,8 +1,9 @@
-import { authAPI, securityAPI } from "../api/api";
+import { authAPI, securityAPI, userAPI } from "../api/api";
 
 const SET_USER_DATA = 'SET_USER_DATA';
 const SET_ERROR_TEXT = 'SET_ERROR_TEXT';
 const SET_CAPTCHA_URL = 'SET_CAPTCHA_URL';
+const SET_AUTH_PROFILE_DATA = 'SET_AUTH_PROFILE_DATA';
 
 let initialState = {
     id: null,
@@ -10,7 +11,8 @@ let initialState = {
     login: null,
     isAuth: false,
     error: null,
-    captchaURL: null
+    captchaURL: null,
+    authUserData: null
 }
 
 const authReducer = (state = initialState, action) => {
@@ -31,6 +33,11 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 captchaURL: action.captchaURL
             };
+        case SET_AUTH_PROFILE_DATA:
+            return {
+                ...state,
+                authUserData: {...action.data}
+            };
         default:
             return state;
     }
@@ -49,6 +56,11 @@ export const setErrorText = (errorMessage) => ({
 export const setCaptchaURL = (captchaURL) => ({
     type: SET_CAPTCHA_URL,
     captchaURL
+})
+
+export const setAuthProfileData = (data) => ({
+    type: SET_AUTH_PROFILE_DATA,
+    data
 })
 
 // thunks
@@ -87,6 +99,11 @@ export const logOut = () => {
             dispatch(setErrorText(data.messages));
         }
     }
+}
+
+export const getAuthProfileData = (userId) => async (dispatch) => {
+    let data = await userAPI.getProfile(userId);
+    dispatch(setAuthProfileData(data));
 }
 
 export default authReducer;

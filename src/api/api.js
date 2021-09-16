@@ -25,3 +25,9 @@ export const securityAPI = {
         return instance.get(`security/get-captcha-url`).then(response => response.data);       
     }
 }
+
+export const userAPI = {
+    getProfile(userId) {
+        return instance.get(`profile/${userId}`).then(response => response.data);   
+    }
+}
