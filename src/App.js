@@ -12,7 +12,9 @@ import { initializeApp } from './redux/app-reducer'
 function App(props) {
 
   useEffect(() => {
-    props.initializeApp(props.authUserID);
+    
+      props.initializeApp();
+      
   });
 
   if (!props.isInitialized) {
@@ -20,7 +22,7 @@ function App(props) {
       <Preloader />
     )
   }
- 
+
   return (
 
   <Route path="/">
@@ -35,17 +37,17 @@ function App(props) {
         <Login />
       }</Route>
 
-      <Route>
-        <div className={styles.wrapper}>
-          <Header />
-            <div className={styles.content}>
-              <Switch>
-                <Route path="/profile/:userID"><Profile /></Route>
-              </Switch>
-            </div>
-        </div>
-      </Route>
-      
+        <Route>
+          <div className={styles.wrapper}>
+            <Header />
+              <div className={styles.content}>
+                <Switch>
+                  <Route path="/profile/:userID"><Profile /></Route>
+                </Switch>
+              </div>
+          </div>
+        </Route>
+
     </Switch>
     
     }

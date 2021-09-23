@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { usePrevious } from "../../hooks/hooks";
+import Preloader from '../../components/Preloader/Preloader'
 
 function Profile(props) {
 
@@ -17,8 +18,12 @@ function Profile(props) {
         }
     });
 
+    if (props.userData.fullName === null) {
+        return <Preloader />
+    }
     return <ProfileTemplate
-    userData={props.userData} />
+        name={props.userData.fullName}
+        mainPhoto={props.userData.photos.large} />
 }
 
 let mapStateToProps = (state) => {

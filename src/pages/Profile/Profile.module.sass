@@ -8,7 +8,27 @@
 .sidebar
     grid-area: sidebar
     background-color: $cl-nero
-    padding: 10px
+    height: calc(100vh - 50px)
+    color: white
 
 .content
     grid-area: content
+    min-height: calc(100vh - 50px)
+
+.infoBlock
+    padding: 20px
+
+    &:not(:last-child)
+        border-bottom: 1px solid $cl-nightRider
+        
+.mainPhoto
+    width: 110px
+    height: 110px
+    border-radius: 50%
+    overflow: hidden
+    margin: auto
+    margin-bottom: 5px
+
+.name
+    text-align: center
+    font-size: 24px

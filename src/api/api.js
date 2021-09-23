@@ -10,7 +10,7 @@ const instance = axios.create({
 
 export const authAPI = {
     getAuth() {
-        return instance.get(`auth/me`).then(response => response.data);
+        return instance.get('auth/me').then(response => response.data);
     },
     login(email, password, rememberMe, captcha) {
         return instance.post('auth/login', {email, password, rememberMe, captcha}).then(response => response.data);
@@ -22,12 +22,18 @@ export const authAPI = {
 
 export const securityAPI = {
     getCaptcha() {
-        return instance.get(`security/get-captcha-url`).then(response => response.data);       
+        return instance.get('security/get-captcha-url').then(response => response.data);       
     }
 }
 
 export const userAPI = {
     getProfile(userId) {
         return instance.get(`profile/${userId}`).then(response => response.data);   
+    },
+    getUserStatus(userId) {
+        return instance.get(`profile/status/${userId}`).then(response => response.data);
+    },
+    updateUserStatus(status) {
+        return instance.put('profile/status', {status: status}).then(response => response.data);
     }
 }

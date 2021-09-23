@@ -67,9 +67,12 @@ export const setAuthProfileData = (data) => ({
 
 export const getAuth = () => async (dispatch) => {
     let data = await authAPI.getAuth();
+    
     if (data.resultCode === 0) {
+        let authProfiledata = await userAPI.getProfile(data.data.id);
         let { id, email, login } = data.data;
         dispatch(setUserAuthData(id, email, login, true));
+        dispatch(setAuthProfileData(authProfiledata));
     }
 }
 
@@ -79,7 +82,7 @@ export const logIn = (logInData) => {
         let data = await authAPI.login(email, password, rememberMe, captcha)
         if (data.resultCode === 0) {
             dispatch(getAuth());
-            dispatch(setCaptchaURL(null))
+            dispatch(setCaptchaURL(null));
         } else {
             if (data.resultCode === 10) {
                 let captcha = await securityAPI.getCaptcha();
@@ -99,11 +102,6 @@ export const logOut = () => {
             dispatch(setErrorText(data.messages));
         }
     }
-}
-
-export const getAuthProfileData = (userId) => async (dispatch) => {
-    let data = await userAPI.getProfile(userId);
-    dispatch(setAuthProfileData(data));
 }
 
 export default authReducer;

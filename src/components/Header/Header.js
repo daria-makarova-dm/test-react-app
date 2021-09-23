@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import HeaderTemplate from "./HeaderTemplate";
 import { logOut } from '../../redux/auth-reducer'
+import Preloader from "../Preloader/Preloader";
 
 function Header(props) {
 
@@ -25,6 +26,10 @@ function Header(props) {
     const onLogOut = (e) => {
         e.preventDefault()
         props.logOut()
+    }
+
+    if (props.authUserProfileData === null) {
+       return <Preloader />
     }
 
     return <HeaderTemplate
