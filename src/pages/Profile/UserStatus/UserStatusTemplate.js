@@ -1,4 +1,6 @@
 import styles from './UserStatus.module.sass'
+import 'simplebar';
+import 'simplebar/dist/simplebar.min.css'
 
 function UserStatusTemplate({ userStatus, newStatus, enableEditMode, disableEditMode, onStatusChange, editMode }) {
 
@@ -12,7 +14,7 @@ function UserStatusTemplate({ userStatus, newStatus, enableEditMode, disableEdit
             }
             {editMode &&
                 <>
-                    <input autoFocus onBlur={() => disableEditMode()} onChange={(e) => onStatusChange(e)} value={newStatus} placeholder='Enter your status...' />
+                    <input className={styles.input} autoFocus onBlur={() => disableEditMode()} onChange={(e) => onStatusChange(e)} value={newStatus} placeholder='Enter your status...' />
                 </>
             }
         </div>
