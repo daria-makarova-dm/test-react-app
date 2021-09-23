@@ -37,6 +37,10 @@ function App(props) {
         <Login />
       }</Route>
 
+        <Route exact path="/">
+          <Redirect to={"/profile/" + props.authUserID} />
+        </Route>
+
         <Route>
           <div className={styles.wrapper}>
             <Header />

@@ -2,8 +2,9 @@ import styles from './Profile.module.sass'
 import UserStatus from './UserStatus/UserStatus'
 import SimpleBar from 'simplebar-react'
 import 'simplebar/dist/simplebar.min.css'
+import ContentBlock from '../../components/ContentBlock/ContentBlock'
 
-function ProfileTemplate({name, mainPhoto}) {
+function ProfileTemplate({ name, mainPhoto }) {
     return (
         <div className={styles.wrapper}>
             <aside className={styles.sidebar}>
@@ -21,7 +22,9 @@ function ProfileTemplate({name, mainPhoto}) {
                 </SimpleBar>
             </aside>
             <div className={styles.content}>
-                <SimpleBar style={{ maxHeight: '100%' }}>
+                <SimpleBar className='contentGrid' style={{ maxHeight: '100%' }}>
+                    <ContentBlock type='about' />
+                    <ContentBlock type='friends' />
                 </SimpleBar>
             </div>
         </div>
