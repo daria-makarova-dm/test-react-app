@@ -9,14 +9,17 @@ import Preloader from '../../components/Preloader/Preloader'
 
 function Profile(props) {
 
-    let [currentUser] = useState(props.match.params.userID);
+    let [currentUser, setCurrentUser] = useState(props.match.params.userID);
     const prevCurrentUser = usePrevious(currentUser);
+    
+
+    if (currentUser !== prevCurrentUser) {
+        props.getProfileData(currentUser)
+    }
 
     useEffect(() => {
-        if (currentUser !== prevCurrentUser) {
-            props.getProfileData(currentUser)
-        }
-    });
+        setCurrentUser(props.match.params.userID)
+    }, [props.match.params.userID]);
 
     if (props.userData.fullName === null) {
         return <Preloader />

@@ -5,15 +5,23 @@ import UserStatusTemplate from "./UserStatusTemplate";
 import { getUserStatus } from '../../../redux/user-reducer'
 import { withRouter } from "react-router";
 import { updateUserStatus } from '../../../redux/user-reducer'
+import { usePrevious } from "../../../hooks/hooks";
 
 function UserStatus(props) {
 
-    let [currentUser] = useState(props.match.params.userID);
-    props.getUserStatus(currentUser);
+    let [currentUser, setCurrentUser] = useState(props.match.params.userID);
+    const prevCurrentUser = usePrevious(currentUser);
+
+    if (currentUser !== prevCurrentUser) {
+        props.getUserStatus(currentUser);
+    }
+    console.log('render')
 
     useEffect(() => {
         setNewStatus(props.userStatus)
-    }, [props.userStatus]);
+        setCurrentUser(props.match.params.userID)
+        console.log('useeffect')
+    }, [props.userStatus, props.match.params.userID]);
 
     let [editMode, setEditMode] = useState(false);
     let [newStatus, setNewStatus] = useState(props.userStatus);
