@@ -9,6 +9,7 @@ import Login from './pages/Login/Login';
 import Profile from './pages/Profile/Profile';
 import Edit from './pages/Edit/Edit';
 import { initializeApp } from './redux/app-reducer'
+import Users from './pages/Users/Users';
 
 function App(props) {
 
@@ -49,6 +50,7 @@ function App(props) {
                 <Switch>
                   <Route path="/profile/:userID"><Profile /></Route>
                   <Route path="/edit"><Edit /></Route>
+                  <Route path="/users"><Users /></Route>
                 </Switch>
               </div>
           </div>

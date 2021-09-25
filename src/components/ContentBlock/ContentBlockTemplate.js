@@ -35,7 +35,7 @@ function ContentBlockTemplate({ type, aboutMe, jobHuntingStatus, specialSkills, 
                                 <div className={styles.title}>Contacts</div>
                                 <div className={styles.description}>
                                     {Object.keys(contacts).map((key) => {
-                                        return contacts[key] != null ? <a key={key} className={styles.contactItem} href={contacts[key]} target='_blank' rel="noreferrer"><img src={socials[key]} alt='' /></a> : ""
+                                        return contacts[key] != null || '' ? <a key={key} className={styles.contactItem} href={contacts[key]} target='_blank' rel="noreferrer"><img src={socials[key]} alt='' /></a> : ""
                                     })}
                                 </div>
                             </li>

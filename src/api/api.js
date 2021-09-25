@@ -40,3 +40,9 @@ export const userAPI = {
         return instance.put('profile', {...data}).then(response => response.data);
     }
 }
+
+export const usersAPI = {
+    getUsers(pageSize, currentPage) {
+        return instance.get(`users?count=${pageSize}&page=${currentPage}`).then(response => response.data);
+    }
+}
