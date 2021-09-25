@@ -2,6 +2,7 @@ import { userAPI } from "../api/api";
 
 const SET_PROFILE_DATA = 'SET_PROFILE_DATA';
 const SET_USER_STATUS = 'SET_USER_STATUS';
+const SET_ERROR_MESSAGE = 'SET_ERROR_MESSAGE';
 
 let initialState = {
     aboutMe: null,
@@ -11,7 +12,8 @@ let initialState = {
     lookingForAJobDescription: null,
     photos: null,
     userId: null,
-    userStatus: ''
+    userStatus: '',
+    errorMessage: null
 }
 
 const userReducer = (state = initialState, action) => {
@@ -27,6 +29,11 @@ const userReducer = (state = initialState, action) => {
                 ...state,
                 userStatus: action.status
             };
+        case SET_ERROR_MESSAGE:
+            return {
+                ...state,
+                errorMessage: action.message
+            };
         default:
             return state;
     }
@@ -40,6 +47,11 @@ export const setProfileData = (data) => ({
 export const setUserStatus = (status) => ({
     type: SET_USER_STATUS,
     status    
+})
+
+export const setErrorMessage = (message) => ({
+    type: SET_ERROR_MESSAGE,
+    message    
 })
 
 // thunks
@@ -60,6 +72,17 @@ export const updateUserStatus = (status) => async (dispatch) => {
 
     if (data.resultCode === 0) {
         dispatch(setUserStatus(status))
+    }
+}
+
+export const editProfile = (newProfileData) => async (dispatch, getState) => {
+    const id = getState().auth.id;
+    let data = await userAPI.editProfile(newProfileData);
+    if (data.resultCode === 0) {
+        dispatch(getProfileData(id))
+        dispatch(setErrorMessage(null))
+    } else {
+        dispatch(setErrorMessage(data.messages))
     }
 }
 

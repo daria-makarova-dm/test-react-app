@@ -15,12 +15,10 @@ function UserStatus(props) {
     if (currentUser !== prevCurrentUser) {
         props.getUserStatus(currentUser);
     }
-    console.log('render')
 
     useEffect(() => {
         setNewStatus(props.userStatus)
         setCurrentUser(props.match.params.userID)
-        console.log('useeffect')
     }, [props.userStatus, props.match.params.userID]);
 
     let [editMode, setEditMode] = useState(false);

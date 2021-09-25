@@ -35,5 +35,8 @@ export const userAPI = {
     },
     updateUserStatus(status) {
         return instance.put('profile/status', {status: status}).then(response => response.data);
+    },
+    editProfile(data) {
+        return instance.put('profile', {...data}).then(response => response.data);
     }
 }

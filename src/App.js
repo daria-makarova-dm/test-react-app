@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 import Preloader from './components/Preloader/Preloader';
 import Login from './pages/Login/Login';
 import Profile from './pages/Profile/Profile';
+import Edit from './pages/Edit/Edit';
 import { initializeApp } from './redux/app-reducer'
 
 function App(props) {
@@ -47,6 +48,7 @@ function App(props) {
               <div className={styles.content}>
                 <Switch>
                   <Route path="/profile/:userID"><Profile /></Route>
+                  <Route path="/edit"><Edit /></Route>
                 </Switch>
               </div>
           </div>

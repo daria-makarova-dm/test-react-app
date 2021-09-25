@@ -90,7 +90,7 @@ label
       border: 1px solid $cl-whiteSmokeDark
       margin-right: 5px        
 
-input:checked + label.checkbox::before
+input:checked + label.checkbox::before 
   background-color: $cl-java
   border: 1px solid transparent
 
@@ -104,6 +104,17 @@ input:checked + label.checkbox::after
   left: 3px
   top: 45%
   transform: translateY(-50%) rotate(45deg)
+
+option
+  background-color: $cl-whiteSmoke
+  border: 1px solid $cl-whiteSmokeDark
+
+.error
+  position: absolute
+  right: 15px
+  top: 50%
+  transform: translateY(-50%)
+  color: $cl-tallPoppy
 
 
 
