@@ -1,7 +1,7 @@
 import styles from './UserCard.module.sass'
 import defaultPhoto from '../../../assets/images/default_profile_pic.jpg'
 
-function UserCardTemplate({photo, name, followed, status}) {
+function UserCardTemplate({photo, name, followed, status, userId, onFollowButtonClick, followingInProgress}) {
     return (
         <div className={styles.wrapper}>
             <div className={styles.inner}>
@@ -13,7 +13,12 @@ function UserCardTemplate({photo, name, followed, status}) {
                     {status || 'There is no information about this user '}
                 </div>
                 <div className={styles.footer}>
-                    <button>Follow</button>
+                    <button className='btn btn-primary' disabled={followingInProgress.some(id => id === userId)} onClick={() => { onFollowButtonClick(userId, followed) }}>
+                        {followed ?
+                            'Unfollow' :
+                            'Follow'
+                        }
+                    </button>
                 </div>
             </div>
         </div>

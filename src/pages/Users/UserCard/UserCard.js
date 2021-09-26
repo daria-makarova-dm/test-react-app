@@ -1,9 +1,21 @@
 import { connect } from "react-redux"
 import UserCardTemplate from "./UserCardTemplate"
+import { follow, unfollow } from '../../../redux/users-reducer'
 
 function UserCard(props) {
 
-    return <UserCardTemplate {...props} />
+    const onFollowButtonClick = (id, isFollowed) => {
+        if (!isFollowed) {
+            props.follow(id);
+          } else {
+            props.unfollow(id);
+          }
+    }
+
+    return <UserCardTemplate 
+        {...props} 
+        onFollowButtonClick={onFollowButtonClick}
+    />
 }
 
 let mapStateToProps = (state) => {
@@ -11,4 +23,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {  })(UserCard)
+export default connect(mapStateToProps, { follow, unfollow })(UserCard)

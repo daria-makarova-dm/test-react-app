@@ -8,12 +8,12 @@ function Users(props) {
     if (props.usersList == null) {
         props.getUsers(props.pageSize, props.currentPage)
     } 
-    console.log('render')
     return <>
         {props.usersList === null ? <Preloader />
             :
             <UsersTemplate
                 usersList={props.usersList}
+                followingInProgress={props.followingInProgress}
             />}
     </>
 }
