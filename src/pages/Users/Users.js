@@ -3,6 +3,7 @@ import UsersTemplate from "./UsersTemplate"
 import { getUsers } from '../../redux/users-reducer'
 import Preloader from '../../components/Preloader/Preloader'
 import { setPortionNumber } from '../../redux/users-reducer'
+import { useEffect } from "react"
 
 function Users(props) {
 
@@ -10,9 +11,15 @@ function Users(props) {
         props.getUsers(props.pageSize, currentPage)
     }
 
-    if (props.usersList == null) {
-        props.getUsers(props.pageSize, props.currentPage)
-    } 
+    useEffect(() => {
+    
+        if (props.usersList == null) {
+            props.getUsers(props.pageSize, props.currentPage)
+        }
+        
+    }, [props]);
+
+     
     return <>
         {props.usersList === null ? <Preloader />
             :
