@@ -9,7 +9,7 @@ import { usePrevious } from "../../../hooks/hooks";
 
 function UserStatus(props) {
 
-    let [currentUser, setCurrentUser] = useState(props.match.params.userID);
+    let [currentUser, setCurrentUser] = useState(+props.match.params.userID);
     const prevCurrentUser = usePrevious(currentUser);
 
     if (currentUser !== prevCurrentUser) {
@@ -18,7 +18,7 @@ function UserStatus(props) {
 
     useEffect(() => {
         setNewStatus(props.userStatus)
-        setCurrentUser(props.match.params.userID)
+        setCurrentUser(+props.match.params.userID)
     }, [props.userStatus, props.match.params.userID]);
 
     let [editMode, setEditMode] = useState(false);
@@ -45,7 +45,10 @@ function UserStatus(props) {
         newStatus={newStatus}
         enableEditMode={enableEditMode}
         disableEditMode={disableEditMode}
-        onStatusChange={onStatusChange} />
+        onStatusChange={onStatusChange}
+        authID={props.authID}
+        currentUser={currentUser}
+         />
 }
 
 let mapStateToProps = (state) => {
