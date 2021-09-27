@@ -2,8 +2,13 @@ import { connect } from "react-redux"
 import UsersTemplate from "./UsersTemplate"
 import { getUsers } from '../../redux/users-reducer'
 import Preloader from '../../components/Preloader/Preloader'
+import { setPortionNumber } from '../../redux/users-reducer'
 
 function Users(props) {
+
+    const onPageChange = (currentPage) => {
+        props.getUsers(props.pageSize, currentPage)
+    }
 
     if (props.usersList == null) {
         props.getUsers(props.pageSize, props.currentPage)
@@ -14,6 +19,12 @@ function Users(props) {
             <UsersTemplate
                 usersList={props.usersList}
                 followingInProgress={props.followingInProgress}
+                currentPage={props.currentPage}
+                onPageChange={onPageChange}
+                totalUsersCount={props.totalUsersCount}
+                pageSize={props.pageSize}
+                portionNumber={props.portionNumber}
+                setPortionNumber={props.setPortionNumber}
             />}
     </>
 }
@@ -29,4 +40,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, { getUsers })(Users)
+export default connect(mapStateToProps, { getUsers, setPortionNumber })(Users)

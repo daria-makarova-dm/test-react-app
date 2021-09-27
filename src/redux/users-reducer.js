@@ -5,6 +5,7 @@ const SET_USERS = 'SET-USERS';
 const SET_TOTAL_USERS_COUNT = 'SET_TOTAL_USERS_COUNT';
 const FOLLOW_TOGGLER = 'FOLLOW-TOGGLER';
 const SET_FOLLOWING_PROGRESS = 'SET_FOLLOWING_PROGRESS';
+const SET_PORTION_NUMBER = 'SET_PORTION_NUMBER';
 
 let initialState = {
     users: null,
@@ -54,6 +55,11 @@ let usersReducer = (state = initialState, action) => {
                 [...state.followingInProgress, action.userID] 
                 : state.followingInProgress.filter((id) => id !== action.userID)
             }
+        case SET_PORTION_NUMBER:
+            return {
+                ...state,
+                portionNumber: action.number
+            }
         default:
             return state;
     }
@@ -84,6 +90,11 @@ export const setFollowingProgress = (status, userID) => ({
     type: SET_FOLLOWING_PROGRESS,
     status,
     userID
+})
+
+export const setPortionNumber = (number) => ({
+    type: SET_PORTION_NUMBER,
+    number
 })
 
 // thunks

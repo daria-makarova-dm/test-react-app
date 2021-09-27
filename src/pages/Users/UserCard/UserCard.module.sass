@@ -4,6 +4,12 @@
     width: calc( 100% / 3 )
     padding: 7.5px
 
+    @media (max-width: 1024px)
+        width: 50%
+
+    @media (max-width: 550px)
+        width: 100%
+
 .inner
     background-color: white
     border: 1px solid $cl-whiteIce
@@ -24,6 +30,7 @@
     height: 50px
     border-radius: 50%
     overflow: hidden
+    flex-shrink: 0
 
 .body
     padding: 15px
