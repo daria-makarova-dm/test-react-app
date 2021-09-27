@@ -24,7 +24,6 @@ function ProfileTemplate({ name, mainPhoto }) {
             <div className={styles.content}>
                 <SimpleBar className='contentGrid' style={{ maxHeight: '100%' }}>
                     <ContentBlock type='about' />
-                    <ContentBlock type='friends' />
                 </SimpleBar>
             </div>
         </div>

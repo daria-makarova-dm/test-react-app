@@ -43,10 +43,6 @@ function ContentBlockTemplate({ type, aboutMe, jobHuntingStatus, specialSkills, 
 
                     }
 
-                    {type === 'friends' &&
-                        'lorem ipsum'
-                    }
-
                 </div>
             </div>
         </div>
