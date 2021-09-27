@@ -25,7 +25,9 @@ function UserStatus(props) {
     let [newStatus, setNewStatus] = useState(props.userStatus);
 
     let enableEditMode = () => {
-        setEditMode(true)
+        if (currentUser === props.authID) {
+           setEditMode(true) 
+        }
     }
 
     let disableEditMode = () => {
@@ -48,7 +50,8 @@ function UserStatus(props) {
 
 let mapStateToProps = (state) => {
     return {
-        userStatus: state.user.userStatus
+        userStatus: state.user.userStatus,
+        authID: state.auth.id
     }
 }
 

@@ -12,14 +12,10 @@ function Users(props) {
     }
 
     useEffect(() => {
-    
         if (props.usersList == null) {
             props.getUsers(props.pageSize, props.currentPage)
         }
-        
     }, [props]);
-
-     
     return <>
         {props.usersList === null ? <Preloader />
             :
