@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/test-react-app/static/css/main.2c88a70c.chunk.css",
+    "main.js": "/test-react-app/static/js/main.775c577b.chunk.js",
+    "main.js.map": "/test-react-app/static/js/main.775c577b.chunk.js.map",
+    "runtime-main.js": "/test-react-app/static/js/runtime-main.28a8b76d.js",
+    "runtime-main.js.map": "/test-react-app/static/js/runtime-main.28a8b76d.js.map",
+    "static/css/2.a2825889.chunk.css": "/test-react-app/static/css/2.a2825889.chunk.css",
+    "static/js/2.b2faec05.chunk.js": "/test-react-app/static/js/2.b2faec05.chunk.js",
+    "static/js/2.b2faec05.chunk.js.map": "/test-react-app/static/js/2.b2faec05.chunk.js.map",
+    "static/js/3.6405ee4b.chunk.js": "/test-react-app/static/js/3.6405ee4b.chunk.js",
+    "static/js/3.6405ee4b.chunk.js.map": "/test-react-app/static/js/3.6405ee4b.chunk.js.map",
+    "index.html": "/test-react-app/index.html",
+    "static/css/2.a2825889.chunk.css.map": "/test-react-app/static/css/2.a2825889.chunk.css.map",
+    "static/css/main.2c88a70c.chunk.css.map": "/test-react-app/static/css/main.2c88a70c.chunk.css.map",
+    "static/js/2.b2faec05.chunk.js.LICENSE.txt": "/test-react-app/static/js/2.b2faec05.chunk.js.LICENSE.txt",
+    "static/media/index.sass": "/test-react-app/static/media/Ubuntu-Regular.39fce2c2.woff",
+    "static/media/facebook.22d5e33c.svg": "/test-react-app/static/media/facebook.22d5e33c.svg",
+    "static/media/github.164d6380.svg": "/test-react-app/static/media/github.164d6380.svg",
+    "static/media/instagram.c83e628e.svg": "/test-react-app/static/media/instagram.c83e628e.svg",
+    "static/media/Login.module.sass": "/test-react-app/static/media/login_bg.32c4d434.jpg",
+    "static/media/mainLink.3b1c69d8.svg": "/test-react-app/static/media/mainLink.3b1c69d8.svg",
+    "static/media/twitter.88d497cc.svg": "/test-react-app/static/media/twitter.88d497cc.svg",
+    "static/media/vk.8b852e1e.svg": "/test-react-app/static/media/vk.8b852e1e.svg",
+    "static/media/website.69464eb9.svg": "/test-react-app/static/media/website.69464eb9.svg",
+    "static/media/youtube.b28b72bb.svg": "/test-react-app/static/media/youtube.b28b72bb.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.28a8b76d.js",
+    "static/css/2.a2825889.chunk.css",
+    "static/js/2.b2faec05.chunk.js",
+    "static/css/main.2c88a70c.chunk.css",
+    "static/js/main.775c577b.chunk.js"
+  ]
+}
